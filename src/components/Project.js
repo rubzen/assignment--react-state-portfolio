@@ -22,7 +22,7 @@ class Project extends Component {
       // for project , passed in through props
 
     return (
-      return <div className={`project ${renderedClassVal}`}>
+       <div className={`project ${renderedClassVal}`}>
         <span className="project__title">{theProjectName}</span>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { projectData } from '../data/datasource'
+import { projectData } from '../data/datasource';
+import Project from './Project';
 
 /*  Advice:
    (1) Create the component's JSX by using .map() on `projectData`
@@ -58,6 +59,7 @@ export default class FilterProjects extends Component {
           <div className='projects-list'>
 
             {/* Step (1) --- .map() the projectData to JSX  */}
+            projectData
 
           </div>
         </section>
