@@ -18,52 +18,72 @@ import Project from './Project';
        component state
 
        Hint: you may want to use .filter() depending on the  then .map()
-
-
  */
 
-export default class FilterProjects extends Component {
+class FilterProjects extends Component {
+  constructor() {
+    super();
+    this.state = {
+      filterType: "all"
+    };
+  }
+
+  handleFilterClick(filter) {
+    console.log("click");
+    this.setState({
+      filterType: filter
+    });
+  }
 
   render() {
-    const projectSelectedClassVal = 'project-type--selected'
+    //const projectSelectedClassVal = "project-type--selected";
+    const { allClassName, teamClassName, soloClassName, filterType } = this.state
+/*
+    let allSelectedRenderedClass = projectSelectedClassVal;
+    let soloSelectedRenderedClass = "";
+    let teamSelectedRenderedClass = "";
+*/
+    let filterListProjects = projectData.filter(project => {
+      if (filterType === "all") return true;
+      if (project.solo === true && filterType === "true") return true;
+      if (project.solo === false && filterType === "false") return true;
+    });
 
-    let allSelectedRenderedClass = projectSelectedClassVal
-    let soloSelectedRenderedClass = ''
-    let teamSelectedRenderedClass = ''
 
     // NOTE:
     // change value of '*SelecteedRenderecClass' variables based on component state for whether
     //'all', 'team', or 'solo' is selected
 
+    return <section>
+        <h4>Projects</h4>
 
+        <div className="project-types-list">
+        <span onClick={() => this.handleFilterClick('all')} data-ptype="all"
+          className={`project-type project-type--all project-type--selected`}>
+            All
+          </span>
 
+          <span onClick={() => this.handleFilterClick('true')} data-ptype="solo"
+            className={`project-type project-type--solo}`}>
+            <i className="ion-person" />
+            Solo
+          </span>
 
-    return (
-      <section>
-          <h4>Projects</h4>
+          <span onClick={() => this.handleFilterClick('false')} data-ptype="team"
+            className={`project-type project-type--team`}>
+            <i className="ion-person-stalker" />
+            Team
+          </span>
+        </div>
 
-          <div className="project-types-list">
-            <span data-ptype="all" className={`project-type project-type--all ${allSelectedRenderedClass}`}>
-              All
-            </span>
-
-            <span data-ptype="solo" className={`project-type project-type--solo ${soloSelectedRenderedClass}}`}>
-              <i className="ion-person"></i>Solo
-            </span>
-
-            <span data-ptype="team" className={`project-type project-type--team ${teamSelectedRenderedClass }`}>
-              <i className="ion-person-stalker"></i>Team
-            </span>
-          </div>
-
-          <div className='projects-list'>
-
-            {/* Step (1) --- .map() the projectData to JSX  */}
-            projectData
-
-          </div>
-        </section>
-
-    );
+        <div className="projects-list">
+          {/* Step (1) --- .map() the projectData to JSX  */
+        filterListProjects.map(project => (
+          <Project key={project.projectName} project={project} />
+        ))}
+        </div>
+      </section>;
   }
 }
+
+export default FilterProjects
