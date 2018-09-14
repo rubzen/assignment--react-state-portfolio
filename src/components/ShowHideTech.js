@@ -11,7 +11,7 @@ export default class ShowHideTech extends Component {
   };
 
   handleClick = () =>{
-    console.log("I was Clicked");
+    console.log("I was Clicked - Technologies");
     this.setState({
       isVisible: !this.state.isVisible
     });
