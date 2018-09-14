@@ -29,7 +29,7 @@ class FilterProjects extends Component {
   }
 
   handleFilterClick(filter) {
-    console.log("click");
+    console.log("I was Clicked in FilterProjects");
     this.setState({
       filterType: filter
     });
@@ -37,7 +37,7 @@ class FilterProjects extends Component {
 
   render() {
     //const projectSelectedClassVal = "project-type--selected";
-    const { allClassName, teamClassName, soloClassName, filterType } = this.state
+    const { filterType } = this.state
 /*
     let allSelectedRenderedClass = projectSelectedClassVal;
     let soloSelectedRenderedClass = "";
